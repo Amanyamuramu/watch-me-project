@@ -9,6 +9,7 @@ Ambient ambient;
 
 #define CDS_PIN 34
 #define LED_PIN_RED 2 // 内蔵LEDはGPIO2に接続
+const float VOLTAGE_THRESHOLD = 1.85; // 電圧のしきい値
 
 void setup() {
   Serial.begin(115200);
@@ -35,7 +36,7 @@ void loop() {
   int inRoom = 0; //0:outside, 1:inside
   Serial.print(voltage);
   Serial.println(" V");
-  if(voltage < 1.5) {
+  if(voltage < VOLTAGE_THRESHOLD) {
     inRoom = 0;
   } else {
     inRoom = 1;
